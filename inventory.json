@@ -1,0 +1,52 @@
+
+{
+    "T1": {
+        "name": "Syringes",
+        "barcode": "100001"
+    },
+    "T2": {
+        "name": "IV Bags",
+        "barcode": "100002"
+    },
+    "T3": {
+        "name": "IV Tubing",
+        "barcode": "100003"
+    },
+    "T4": {
+        "name": "Surgical Gloves",
+        "barcode": "100004"
+    },
+    "T5": {
+        "name": "Alcohol Swabs",
+        "barcode": "100005"
+    },
+    "L1": {
+        "name": "Needles",
+        "barcode": "100006"
+    },
+    "L2": {
+        "name": "Blood Collection Tubes",
+        "barcode": "100007"
+    },
+    "R1": {
+        "name": "Tourniquets",
+        "barcode": "100008"
+    },
+    "C1": {
+        "name": "Gauze",
+        "barcode": "100009"
+    },
+    "C2": {
+        "name": "Medical Bandages",
+        "barcode": "100010"
+    },
+    "C3": {
+        "name": "Wound Dressings",
+        "barcode": "100011"
+    },
+    "B1": {
+        "name": "Adhesive Tape",
+        "barcode": "100012"
+    }
+}
+

@@ -1,0 +1,27 @@
+
+{
+    "Wound Dressing": [
+        "Gauze",
+        "Medical Bandages",
+        "Surgical Gloves",
+        "Wound Dressings",
+        "Adhesive Tape"
+    ],
+
+    "IV Insertion": [
+        "Syringes",
+        "IV Bags",
+        "IV Tubing",
+        "Surgical Gloves",
+        "Alcohol Swabs"
+    ],
+
+    "Blood Collection": [
+        "Syringes",
+        "Needles",
+        "Blood Collection Tubes",
+        "Tourniquets",
+        "Alcohol Swabs",
+        "Surgical Gloves"
+    ]
+}
