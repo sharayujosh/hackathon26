@@ -97,20 +97,12 @@ def show_navigation(
 
     epd = epd3in97g.EPD()
 
-    image = Image.new(
-        "RGB",
-        (epd.height, epd.width),
-        WHITE
-    )
+    image = Image.new("RGB", (epd.height, epd.width), WHITE)
 
     draw = ImageDraw.Draw(image)
 
     # HEADER
-
-    draw.rectangle(
-        [(0, 0), (800, 55)],
-        fill=BLACK
-    )
+    draw.rectangle([(0, 0), (800, 55)], fill=BLACK)
 
     draw.text(
         (20, 8),
@@ -120,7 +112,6 @@ def show_navigation(
     )
 
     # PATIENT INFORMATION
-
     draw.text(
         (20, 60),
         f"Patient No: {patient_id}",
@@ -149,7 +140,6 @@ def show_navigation(
     )
 
     # SUPPLY COLLECTION LIST
-
     draw.text(
         (20, 148),
         "SUPPLY COLLECTION LIST",
@@ -171,7 +161,6 @@ def show_navigation(
         y_position += 22
 
     # ROUTE HEADING
-
     draw.line(
         [(20, 315), (780, 315)],
         fill=BLACK,
@@ -186,31 +175,22 @@ def show_navigation(
     )
 
     # ROUTE INSTRUCTIONS
-
     route_start = 350
     route_end = 438
     route_count = len(best_order)
 
     if route_count > 1:
-
-        route_spacing = min(
-            27,
-            (route_end - route_start) // (route_count - 1)
-        )
+        route_spacing = min(27, (route_end - route_start) // (route_count - 1))
 
     else:
-
         route_spacing = 27
 
     y_position = route_start
 
     for number, location in enumerate(best_order, start=1):
-
         supply_name = inventory[location]["name"]
 
-        instruction = (
-            f"{number}. Collect {supply_name} from {location}"
-        )
+        instruction = (f"{number}. Collect {supply_name} from {location}")
 
         draw.text(
             (30, y_position),
@@ -222,12 +202,7 @@ def show_navigation(
         y_position += route_spacing
 
     # FIXED BARCODE INSTRUCTION AT BOTTOM
-
-    draw.rectangle(
-        [(0, 465), (800, 495)],
-        fill=BLACK
-    )
-
+    draw.rectangle([(0, 465), (800, 495)], fill=BLACK)
     barcode_instruction = "SCAN THE BARCODE OF EACH REQUIRED ITEM"
 
     barcode_box = draw.textbbox(
@@ -237,7 +212,6 @@ def show_navigation(
     )
 
     barcode_width = barcode_box[2] - barcode_box[0]
-
     draw.text(
         (20, 465),
         barcode_instruction,
@@ -253,21 +227,11 @@ def show_navigation(
 # --------------------------------------------------
 
 def clear_screen():
-
     WHITE = (255, 255, 255)
-
     epd = epd3in97g.EPD()
-
     # Create completely white image
-
-    image = Image.new(
-        "RGB",
-        (epd.height, epd.width),
-        WHITE
-    )
-
+    image = Image.new("RGB", (epd.height, epd.width), WHITE)
     # Refresh display with blank image
-
     update_screen(image)
 
 
@@ -276,7 +240,5 @@ def clear_screen():
 # --------------------------------------------------
 
 def show_complete(patient_id, room, procedure):
-
     # Clear the display instead of showing a completion message.
-
     clear_screen()

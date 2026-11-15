@@ -52,9 +52,7 @@ NURSE_BARCODE_LOOKUP = {}
 
 for nurse_barcode, nurse_data in NURSES.items():
 
-    NURSE_BARCODE_LOOKUP[str(nurse_barcode)] = (
-        nurse_data["nurse_id"]
-    )
+    NURSE_BARCODE_LOOKUP[str(nurse_barcode)] = (nurse_data["nurse_id"])
 
 
 # --------------------------------------------------
@@ -114,14 +112,10 @@ def process_nurse(nurse_id):
     required_supplies = PROCEDURES[procedure_name]
 
     # Find storage locations
-    storage_locations = find_supply_locations(
-        required_supplies
-    )
+    storage_locations = find_supply_locations(required_supplies)
 
     # Calculate optimized route
-    best_order, complete_path, total_distance = (
-        routing.plan_multi_item_route(storage_locations)
-    )
+    best_order, complete_path, total_distance = (routing.plan_multi_item_route(storage_locations))
 
     # --------------------------------------------------
     # DISPLAY NAVIGATION ONCE
@@ -150,18 +144,13 @@ def process_nurse(nurse_id):
     while len(collected_supplies) < len(required_supplies):
 
         # Wait for supply barcode
-        scanned_barcode = str(
-            barcode.scan_barcode()
-        ).strip()
+        scanned_barcode = str(barcode.scan_barcode()).strip()
 
         # Find scanned item
-        scanned_item = BARCODE_LOOKUP.get(
-            scanned_barcode
-        )
+        scanned_item = BARCODE_LOOKUP.get(scanned_barcode)
 
         # Unknown barcode
         if scanned_item is None:
-
             print("ERROR: Unknown barcode.")
             continue
 
@@ -169,24 +158,18 @@ def process_nurse(nurse_id):
 
         # Check whether supply is required
         if supply_name not in required_supplies:
-
             print("ERROR: Wrong supply:", supply_name)
             continue
 
         # Check duplicate scan
         if supply_name in collected_supplies:
-
             print("Already collected:", supply_name)
             continue
 
         # Accept correct supply
         collected_supplies.add(supply_name)
 
-        print(
-            "CORRECT:",
-            supply_name,
-            f"({len(collected_supplies)}/{len(required_supplies)})"
-        )
+        print("CORRECT:", supply_name, f"({len(collected_supplies)}/{len(required_supplies)})")
 
         # E-paper does not refresh during collection.
 
@@ -210,7 +193,6 @@ def process_nurse(nurse_id):
 def main():
 
     while True:
-
         print("\n================================")
         print("       MEDROUTE NAVIGATION")
         print("================================")
@@ -228,7 +210,6 @@ def main():
 
         # Reject unrecognized nurse barcode
         if nurse_id is None:
-
             print("ERROR: Nurse barcode not recognized.")
             continue
 
@@ -243,7 +224,6 @@ def main():
 # --------------------------------------------------
 
 if __name__ == "__main__":
-
     try:
         main()
 

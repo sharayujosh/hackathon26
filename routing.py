@@ -37,7 +37,6 @@ def find_shortest_path(start, destination):
 
     # Keep exploring until there are no nodes left
     while priority_queue:
-
         current_distance, current_node = heapq.heappop(priority_queue)
 
         # Ignore outdated entries in the priority queue
@@ -50,13 +49,11 @@ def find_shortest_path(start, destination):
 
         # Check all neighboring nodes
         for neighbor, distance in layout.NAVIGATION_GRAPH[current_node]:
-
             # Calculate the distance through the current node
             new_distance = current_distance + distance
 
             # Update if this route is shorter
             if new_distance < distances[neighbor]:
-
                 distances[neighbor] = new_distance
                 previous_nodes[neighbor] = current_node
 
@@ -67,9 +64,7 @@ def find_shortest_path(start, destination):
 
     # Check whether a route was found
     if distances[destination] == float("inf"):
-        raise ValueError(
-            f"No route exists from '{start}' to '{destination}'."
-        )
+        raise ValueError(f"No route exists from '{start}' to '{destination}'.")
 
     # Reconstruct the shortest path
     path = []
@@ -98,9 +93,7 @@ def plan_multi_item_route(required_items):
     # Check that every requested storage location exists
     for item in required_items:
         if item not in layout.ACCESS_NODE_IDS:
-            raise ValueError(
-                f"Storage location '{item}' does not exist."
-            )
+            raise ValueError(f"Storage location '{item}' does not exist.")
 
     # Remove duplicate storage locations while preserving order
     required_items = list(dict.fromkeys(required_items))
@@ -116,22 +109,17 @@ def plan_multi_item_route(required_items):
 
     # Try every possible order of collecting the supplies
     for order in permutations(required_items):
-
         current_location = start
         total_distance = 0
         complete_path = [start]
 
         # Visit each required storage location
         for storage_id in order:
-
             # Get the navigation node for this storage location
             destination = layout.ACCESS_NODE_IDS[storage_id]
 
             # Find the shortest path to that location
-            path, distance = find_shortest_path(
-                current_location,
-                destination
-            )
+            path, distance = find_shortest_path(current_location, destination)
 
             # Add the distance
             total_distance += distance
@@ -143,17 +131,13 @@ def plan_multi_item_route(required_items):
             current_location = destination
 
         # Finally, travel to the EXIT
-        path, distance = find_shortest_path(
-            current_location,
-            end
-        )
+        path, distance = find_shortest_path(current_location, end)
 
         total_distance += distance
         complete_path.extend(path[1:])
 
         # Save this route if it is the shortest one so far
         if total_distance < best_distance:
-
             best_distance = total_distance
             best_order = list(order)
             best_path = complete_path
